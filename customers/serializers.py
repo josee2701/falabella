@@ -3,7 +3,14 @@ from .models import (
     Cliente,
     TipoDocumento
 )
-
+class TipoDocumentoSerializer(serializers.ModelSerializer):
+    """
+    Serializer para listar los tipos de documento.
+    Optimizado para un <select> en el frontend.
+    """
+    class Meta:
+        model = TipoDocumento
+        fields = ['id', 'nombre']
 
 class ClienteListSerializer(serializers.ModelSerializer):
     """
@@ -50,11 +57,20 @@ class ClienteListSerializer(serializers.ModelSerializer):
         return tel.numero if tel else None
 
 
-class TipoDocumentoSerializer(serializers.ModelSerializer):
+class ClienteReporteFidelizacionSerializer(ClienteListSerializer):
     """
-    Serializer para listar los tipos de documento.
-    Optimizado para un <select> en el frontend.
+    Extiende el serializer de cliente para incluir
+    los campos anotados (calculados en la DB) para el reporte
+    de fidelización.
     """
-    class Meta:
-        model = TipoDocumento
-        fields = ['id', 'nombre']
+
+    monto_ultimo_mes = serializers.DecimalField(
+        max_digits=15, decimal_places=2, read_only=True
+    )
+    aplica_fidelizacion = serializers.BooleanField(read_only=True)
+
+    class Meta(ClienteListSerializer.Meta):
+        fields = ClienteListSerializer.Meta.fields + [
+            'monto_ultimo_mes',
+            'aplica_fidelizacion'
+        ]
