@@ -263,36 +263,15 @@ class Compra(models.Model):
         default='PEN',
         verbose_name='Estado'
     )
-    subtotal = models.DecimalField(
-        max_digits=15,
-        decimal_places=2,
-        default=Decimal('0.00'),
-        verbose_name='Subtotal'
-    )
-    impuestos = models.DecimalField(
-        max_digits=15,
-        decimal_places=2,
-        default=Decimal('0.00'),
-        verbose_name='Impuestos (IVA)'
-    )
-    descuento = models.DecimalField(
-        max_digits=15,
-        decimal_places=2,
-        default=Decimal('0.00'),
-        verbose_name='Descuento'
-    )
+
     total = models.DecimalField(
         max_digits=15,
         decimal_places=2,
         validators=[MinValueValidator(Decimal('0.00'))],
-        verbose_name='Total'
+        verbose_name='Total',
+        default=Decimal('0.00')
     )
-    notas = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='Notas'
-    )
-
+ 
     class Meta:
         verbose_name = 'Compra'
         verbose_name_plural = 'Compras'
@@ -330,17 +309,6 @@ class DetalleCompra(models.Model):
         decimal_places=2,
         validators=[MinValueValidator(Decimal('0.00'))],
         verbose_name='Precio Unitario'
-    )
-    descuento_item = models.DecimalField(
-        max_digits=15,
-        decimal_places=2,
-        default=Decimal('0.00'),
-        verbose_name='Descuento por Item'
-    )
-    notas = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='Notas'
     )
 
     class Meta:
