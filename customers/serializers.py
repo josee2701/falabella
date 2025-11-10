@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import (
-    Cliente
+    Cliente,
+    TipoDocumento
 )
 
 
@@ -47,3 +48,13 @@ class ClienteListSerializer(serializers.ModelSerializer):
             tel = obj.telefonos.first()
 
         return tel.numero if tel else None
+
+
+class TipoDocumentoSerializer(serializers.ModelSerializer):
+    """
+    Serializer para listar los tipos de documento.
+    Optimizado para un <select> en el frontend.
+    """
+    class Meta:
+        model = TipoDocumento
+        fields = ['id', 'nombre']
