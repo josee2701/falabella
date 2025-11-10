@@ -1,0 +1,70 @@
+[
+  {
+    "model": "customers.tipodocumento",
+    "pk": 1,
+    "fields": {
+      "nombre": "Cédula de Ciudadanía",
+      "activo": true
+    }
+  },
+  {
+    "model": "customers.tipodocumento",
+    "pk": 2,
+    "fields": {
+      "nombre": "Pasaporte",
+      "activo": true
+    }
+  },
+  {
+    "model": "customers.tipodocumento",
+    "pk": 3,
+    "fields": {
+      "nombre": "Cédula de Extranjería",
+      "activo": true
+    }
+  },
+  {
+    "model": "customers.tipodocumento",
+    "pk": 4,
+    "fields": {
+      "nombre": "NIT",
+      "activo": true
+    }
+  },
+  {
+    "model": "customers.tipodocumento",
+    "pk": 5,
+    "fields": {
+      "nombre": "Tarjeta de Identidad",
+      "activo": true
+    }
+  },
+  {
+    "model": "customers.tipotelefono",
+    "pk": 1,
+    "fields": {
+      "nombre": "Celular"
+    }
+  },
+  {
+    "model": "customers.tipotelefono",
+    "pk": 2,
+    "fields": {
+      "nombre": "Casa"
+    }
+  },
+  {
+    "model": "customers.tipotelefono",
+    "pk": 3,
+    "fields": {
+      "nombre": "Trabajo"
+    }
+  },
+  {
+    "model": "customers.tipotelefono",
+    "pk": 4,
+    "fields": {
+      "nombre": "Oficina"
+    }
+  }
+]
