@@ -36,17 +36,18 @@ class ClienteListView(generics.ListAPIView):
 
         return queryset.distinct()
 
-class ClienteDownloadCSVView(APIView):
+class ClienteDownloadCSVView(ClienteListView): # <- ¡CAMBIO 1: Hereda de ClienteListView!
     """
     Vista para descargar un reporte de clientes en formato CSV
     utilizando Pandas.
+    
+    Hereda de ClienteListView para reutilizar su lógica de filtrado.
     """
     
     def get(self, request, *args, **kwargs):
-        queryset = Cliente.objects.filter(activo=True).prefetch_related(
-            'documentos__tipo_documento', 
-            'telefonos'
-        )
+        
+        queryset = self.get_queryset() 
+        
         serializer = ClienteListSerializer(queryset, many=True)
         data = serializer.data
         df = pd.DataFrame(data)
